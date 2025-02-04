@@ -4,11 +4,11 @@ class Usuario {
   final String email;
   final String password;
   final String phone;
-  final String image;
   final String tipoUsuario;
   final String dataPublicacao;
   final String especialidade;
   final String localizacao;
+  final String dataCadastro;
 
   Usuario(
       {required this.id,
@@ -16,9 +16,24 @@ class Usuario {
       required this.email,
       required this.password,
       required this.phone,
-      required this.image,
       required this.tipoUsuario,
       required this.dataPublicacao,
       required this.especialidade,
+      required this.dataCadastro,
       required this.localizacao});
+
+      Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+      'password': password,
+      'phone': phone,
+      'tipoUsuario': tipoUsuario,
+      'dataPublicacao': dataPublicacao,
+      'especialidade': especialidade,
+      'dataCadastro': dataCadastro,
+      'localizacao': localizacao,
+    };
+  }
 }
