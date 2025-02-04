@@ -10,12 +10,12 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
-    sqflite: ^2.3.0
-    path: ^1.8.3
-    shared_preferences: ^2.2.0
-    riverpod: ^2.3.6
-    flutter_riverpod: ^2.3.6
-    uuid: ^3.0.7
+  sqflite: ^2.3.0
+  path: ^1.8.3
+  shared_preferences: ^2.2.0
+  riverpod: ^2.3.6
+  flutter_riverpod: ^2.3.6
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_test:
