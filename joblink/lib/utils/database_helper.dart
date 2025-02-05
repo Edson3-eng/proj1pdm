@@ -6,31 +6,40 @@ class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._init();
   static Database? _database;
 
-  factory DatabaseHelper() {
-    return instance;
-  }
-
   DatabaseHelper._init();
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDatabase();
-    return _database!;
+
+    try {
+      _database = await _initDB('joblink.db');
+      return _database!;
+    } catch (e) {
+      print('Erro ao inicializar o banco de dados: $e');
+      throw Exception('Erro ao inicializar o banco de dados');
+    }
   }
 
-  Future<Database> _initDatabase() async {
-    String path = join(await getDatabasesPath(), 'joblink.db');
-    return await openDatabase(
-      path,
-      version:1,
-      onCreate: _onCreate,
-    );
+  Future<Database> _initDB(String filePath) async {
+    try {
+      final dbPath = await getDatabasesPath();
+      final path = join(dbPath, filePath);
+      return await openDatabase(
+        path,
+        version: 1,
+        onCreate: _onCreate,
+        onOpen: (db) async {
+          print('base de dados aberta');
+        },
+      );
+    } catch (e) {
+      print('Erro ao abrir a base de dados: $e');
+      throw Exception('Erro ao abrir a base de dados');
+    }
   }
 
-}
-
-Future<void> _onCreate(Database db, int version) async {
-  await db.execute('''
+  Future<void> _onCreate(Database db, int version) async {
+    await db.execute('''
     CREATE TABLE Usuario (
       id TEXT PRIMARY KEY,
       name TEXT,
@@ -45,7 +54,7 @@ Future<void> _onCreate(Database db, int version) async {
     )
   ''');
 
-  await db.execute('''
+    await db.execute('''
     CREATE TABLE Trabalho (
       id TEXT PRIMARY KEY,
       titulo TEXT,
@@ -63,7 +72,7 @@ Future<void> _onCreate(Database db, int version) async {
     )
   ''');
 
-  await db.execute('''
+    await db.execute('''
     CREATE TABLE Proposta (
       id TEXT PRIMARY KEY,
       valor TEXT,
@@ -77,7 +86,7 @@ Future<void> _onCreate(Database db, int version) async {
     )
   ''');
 
-  await db.execute('''
+    await db.execute('''
     CREATE TABLE Avaliacao (
       id TEXT PRIMARY KEY,
       cidadaoId TEXT,
@@ -92,7 +101,7 @@ Future<void> _onCreate(Database db, int version) async {
     )
   ''');
 
-  await db.execute('''
+    await db.execute('''
     CREATE TABLE Mensagem (
       id TEXT PRIMARY KEY,
       conteudo TEXT,
@@ -104,6 +113,5 @@ Future<void> _onCreate(Database db, int version) async {
       FOREIGN KEY (freeLancerId) REFERENCES Usuario(id)
     )
   ''');
-
-
+  }
 }

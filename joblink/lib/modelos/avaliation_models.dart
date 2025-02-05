@@ -27,4 +27,15 @@ class Avaliacao {
       'dataAvaliacao': dataAvaliacao,
     };
   }
+  static Avaliacao fromMap(Map<String, dynamic> map) {
+    return Avaliacao(
+      id: map['id'],
+      cidadaoId: map['cidadaoId'],
+      freeLancerId: map['freeLancerId'],
+      trabalhoId: map['trabalhoId'],
+      nota: map['nota'],
+      comentario: map['comentario'],
+      dataAvaliacao: map['dataAvaliacao'],
+    );
+  }
 }

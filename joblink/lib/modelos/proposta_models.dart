@@ -28,4 +28,15 @@ class Proposta {
       'status': status,
     };
   }
+  static Proposta fromMap(Map<String, dynamic> map) {
+    return Proposta(
+      id: map['id'],
+      valor: map['valor'],
+      descricao: map['descricao'],
+      cidadaoId: map['cidadaoId'],
+      freeLancerId: map['freeLancerId'],
+      dataProposta: map['dataProposta'],
+      status: map['status'],
+    );
+  }
 }

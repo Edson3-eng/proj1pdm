@@ -24,4 +24,14 @@ class Mensagem {
       'lida': lida,
     };
   }
+  static Mensagem fromMap(Map<String, dynamic> map) {
+    return Mensagem(
+      id: map['id'],
+      conteudo: map['conteudo'],
+      dataEnvio: map['dataEnvio'],
+      cidadaoId: map['cidadaoId'],
+      freeLancerId: map['freeLancerId'],
+      lida: map['lida'],
+    );
+  }
 }

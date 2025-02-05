@@ -42,4 +42,20 @@ class Trabalho {
       'cidadaoId': cidadaoId,
     };
   }
+  static Trabalho fromMap(Map<String, dynamic> map) {
+    return Trabalho(
+      id: map['id'],
+      titulo: map['titulo'],
+      descricao: map['descricao'],
+      localizacao: map['localizacao'],
+      categoria: map['categoria'],
+      orcamento: map['orcamento'],
+      dataCriacao: map['dataCriacao'],
+      dataLimite: map['dataLimite'],
+      propostas: map['propostas'],
+      prazo: map['prazo'],
+      status: map['status'],
+      cidadaoId: map['cidadaoId'],
+    );
+  }
 }
