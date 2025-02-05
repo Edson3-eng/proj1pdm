@@ -57,6 +57,7 @@ Future<void> _onCreate(Database db, int version) async {
       propostas TEXT,
       prazo TEXT,
       status TEXT,
+      FOREIGN KEY (cidadaoId) REFERENCES Usuario(id)
       cidadaoId TEXT
     )
   ''');
@@ -69,8 +70,39 @@ Future<void> _onCreate(Database db, int version) async {
       cidadaoId TEXT,
       freeLancerId TEXT,
       dataProposta TEXT,
+      FOREIGN KEY (cidadaoId) REFERENCES Usuario(id),
+      FOREIGN KEY (freeLancerId) REFERENCES Usuario(id),
       status TEXT
     )
   ''');
+
+  await db.execute('''
+    CREATE TABLE Avaliacao (
+      id TEXT PRIMARY KEY,
+      cidadaoId TEXT,
+      freeLancerId TEXT,
+      trabalhoId TEXT,
+      nota TEXT,
+      comentario TEXT,
+      dataAvaliacao TEXT,
+      FOREIGN KEY (cidadaoId) REFERENCES Usuario(id),
+      FOREIGN KEY (freeLancerId) REFERENCES Usuario(id),
+      FOREIGN KEY (trabalhoId) REFERENCES Trabalho(id)
+    )
+  ''');
+
+  await db.execute('''
+    CREATE TABLE Mensagem (
+      id TEXT PRIMARY KEY,
+      conteudo TEXT,
+      dataEnvio TEXT,
+      cidadaoId TEXT,
+      freeLancerId TEXT,
+      lida TEXT,
+      FOREIGN KEY (cidadaoId) REFERENCES Usuario(id),
+      FOREIGN KEY (freeLancerId) REFERENCES Usuario(id)
+    )
+  ''');
+
 
 }

@@ -1,7 +1,7 @@
 class Avaliacao {
   final String id;
   final String cidadaoId;
-  final String freeLancer;
+  final String freeLancerId;
   final String trabalhoId;
   final String nota;
   final String comentario;
@@ -12,7 +12,7 @@ class Avaliacao {
       required this.nota,
       required this.comentario,
       required this.cidadaoId,
-      required this.freeLancer,
+      required this.freeLancerId,
       required this.trabalhoId,
       required this.dataAvaliacao});
 
@@ -20,7 +20,7 @@ class Avaliacao {
     return {
       'id': id,
       'cidadaoId': cidadaoId,
-      'freeLancer': freeLancer,
+      'freeLancer': freeLancerId,
       'trabalhoId': trabalhoId,
       'nota': nota,
       'comentario': comentario,
