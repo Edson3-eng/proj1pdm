@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:joblink/screens/auth/login.dart';
 import 'screens/auth/register_screen.dart';
 import 'package:sqflite/sqflite_dev.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -23,6 +24,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => RegisterScreen(),
+        '/login': (context) => LoginScreen(),
+        
       },
     );
   }
